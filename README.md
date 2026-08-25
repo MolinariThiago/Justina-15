@@ -50,15 +50,20 @@ Guardá el archivo. Sin este paso, la página igual funciona: guarda la respuest
 
 ### La playlist de Spotify
 
-La sección Playlist tiene un botón que abre esta playlist colaborativa:
+La sección Playlist tiene un botón que abre la playlist colaborativa "Mis xv":
 
 ```
-https://open.spotify.com/playlist/1NlDhIEXqkhkSVStP8xsGc
+https://open.spotify.com/playlist/1NlDhIEXqkhkSVStP8xsGc?pt=8c5abceeab34783efa9cf8d82aa973ec
 ```
 
-Los invitados agregan sus temas ellos mismos desde Spotify — no hay nada que configurar del lado del código. **Lo único importante: la playlist tiene que estar en modo colaborativo**, si no, nadie más que vos va a poder agregar canciones.
+Los invitados agregan sus temas ellos mismos desde Spotify — no hay nada que configurar del lado del código.
 
-Para activarlo, en la app de Spotify: abrí la playlist → los tres puntos (⋯) → **Invitar colaboradores**. Eso la vuelve colaborativa. Verificá que quedó activo pidiéndole a alguien que pruebe agregar un tema antes de mandar la invitación.
+**El `?pt=...` no es opcional.** Es el token de invitación que suma a la persona como colaboradora de la playlist. Sin esa parte, el link abre la playlist pero en modo lectura: la ven, no pueden agregar nada. Sale de la app de Spotify: playlist → los tres puntos (⋯) → **Invitar colaboradores** → copiar link. Del link que da Spotify se conserva `pt`; el resto (`si`, `utm_source`, `pi`) es tracking y se descarta.
+
+Dos cosas para tener en cuenta:
+
+- **Cualquiera con el link puede editar**, no solo agregar: también puede borrar temas de otros. Como el link está en una página pública, conviene que Justina le eche un ojo a la playlist cada tanto.
+- Si Spotify regenera el link de invitación (pasa si alguien toca "restablecer link" en la app), el `pt` viejo deja de andar y hay que actualizar el `href` en `index.html`.
 
 Para quien no tenga Spotify, la sección tiene un "No tengo Spotify" plegable con un campo de texto: esas sugerencias caen en la pestaña **Playlist** de la Google Sheet y las cargás a mano cuando quieras.
 
@@ -89,7 +94,7 @@ Cada vez que cambies algo (texto, fecha, etc.), volvés a correr `npx vercel --p
 - [ ] Borraste la fila "Prueba Test" de la planilla.
 - [ ] Confirmá con Justina si el **17 de noviembre de 2026 es el día correcto** — cae martes, no miércoles. Si la fecha o el horario cambian, editá `PARTY_DATE` en `main.js` (formato `"2026-11-17T21:30:00-03:00"`) y `index.html` (sección "La fiesta": `.date__side`, `.date__range`, y los `<meta>` del `<head>`).
 - [ ] Probá la página en tu celu (no solo en la compu): abrí la URL de Vercel desde WhatsApp.
-- [ ] Activaste el modo colaborativo en la playlist de Spotify y alguien más probó agregar un tema.
+- [ ] **Alguien que no seas vos** abrió el botón "Sumá tu tema" desde su celu y logró agregar una canción. Es la única forma de saber que el token de colaborador anda — probándolo desde otra cuenta, no desde la tuya (vos ya sos la dueña de la playlist, a vos te va a funcionar igual).
 
 ## Personalización rápida
 

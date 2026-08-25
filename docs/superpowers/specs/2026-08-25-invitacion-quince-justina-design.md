@@ -19,7 +19,9 @@ Página de una sola pantalla (scroll vertical), mobile-first, para que los invit
 
 Ventaja no obvia además de la simplicidad: eligiendo el tema en Spotify no hay ambigüedad de matching — la búsqueda por texto libre del approach anterior podía agregar la canción equivocada cuando el invitado escribía mal el nombre.
 
-Trade-off: requiere cuenta de Spotify (gratuita alcanza). Mitigado con un `<details>` plegable "No tengo Spotify" que conserva el campo de texto original; esas sugerencias van a la pestaña "Playlist" de la Sheet y se cargan a mano. Depende de que la playlist esté en modo colaborativo — verificación agregada al checklist del README.
+Trade-off: requiere cuenta de Spotify (gratuita alcanza). Mitigado con un `<details>` plegable "No tengo Spotify" que conserva el campo de texto original; esas sugerencias van a la pestaña "Playlist" de la Sheet y se cargan a mano.
+
+**El link lleva el token de colaboración (`?pt=...`), no el link limpio.** Es lo que suma al invitado como colaborador; sin él la playlist abre en modo lectura. Se descartan los parámetros de tracking (`si`, `utm_source`, `pi`). Consecuencias asumidas: cualquiera con acceso a la página puede editar la playlist (incluido borrar temas ajenos), y si Spotify regenera el link de invitación hay que actualizar el `href`. Verificación en el checklist del README: la prueba tiene que hacerla alguien que no sea el dueño de la playlist, porque al dueño le funciona con o sin token.
 
 ## Datos reales
 
