@@ -66,7 +66,9 @@ Cada canción sugerida en la sección Playlist se busca sola en Spotify y se agr
 5. En el editor de Apps Script: ícono de tuerca ⚙️ **Configuración del proyecto** → sección **Propiedades del script** → **Agregar propiedad del script**. Cargá vos mismo, a mano:
    - `SPOTIFY_CLIENT_ID` = el Client ID del paso 4
    - `SPOTIFY_CLIENT_SECRET` = el Client secret del paso 4
-   - `SPOTIFY_PLAYLIST_ID` = la parte del link del paso 1 entre `/playlist/` y el `?`. Ej: en `open.spotify.com/playlist/37i9dQZF1E8`, el ID es `37i9dQZF1E8`.
+   - `SPOTIFY_PLAYLIST_ID` = `1NlDhIEXqkhkSVStP8xsGc`
+
+   (Ese ID sale del link de la playlist: es la parte entre `/playlist/` y el `?`. Todo lo que viene después del `?` — `si=`, `utm_source=`, `pi=` — es tracking y se descarta. Si algún día cambiás de playlist, sacá el ID nuevo igual.)
 6. Con el ícono **+** junto a "Servicios" (panel izquierdo) → **Bibliotecas** → pegá este ID de script y **Buscar**:
    ```
    1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMun4iDF
