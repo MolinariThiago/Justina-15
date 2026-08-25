@@ -96,20 +96,35 @@
   <section class="section playlist" id="playlist" aria-labelledby="playlist-t">
     <h2 class="eyebrow reveal" id="playlist-t">Playlist</h2>
     <p class="playlist__text reveal" data-delay="1">
-      Ayudanos a armar la música de la noche.<br>¿Qué tema no puede faltar?
+      Ayudanos a armar la música de la noche.<br>Agregá tu tema a la playlist.
     </p>
 
-    <form class="form form--compact reveal" data-delay="2" id="playlist-form" novalidate>
-      <div class="field">
-        <label for="cancion" class="sr-only">Canción</label>
-        <input type="text" id="cancion" name="cancion" autocomplete="off"
-               placeholder="Artista - Tema" maxlength="120"
-               aria-describedby="err-cancion">
-        <p class="err" id="err-cancion" hidden></p>
-      </div>
-      <button type="submit" class="btn btn--solid" id="playlist-submit">Sugerir</button>
-      <p class="form__status" id="playlist-status" role="status" aria-live="polite"></p>
-    </form>
+    <a class="btn btn--spotify reveal" data-delay="2"
+       href="https://open.spotify.com/playlist/1NlDhIEXqkhkSVStP8xsGc"
+       target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+        <circle cx="12" cy="12" r="11" fill="currentColor"/>
+        <path d="M6.9 9.4c3.3-1 8-.8 11 1.1M7.6 12.6c2.8-.8 6.6-.6 9 .9M8.4 15.6c2.2-.6 5.1-.5 7 .7"
+              fill="none" stroke="var(--cream)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Sumá tu tema
+    </a>
+
+    <details class="fallback-toggle reveal" data-delay="3">
+      <summary>No tengo Spotify</summary>
+      <p class="fallback-toggle__hint">Escribí el tema acá y lo agregamos nosotros.</p>
+      <form class="form form--compact" id="playlist-form" novalidate>
+        <div class="field">
+          <label for="cancion" class="sr-only">Canción</label>
+          <input type="text" id="cancion" name="cancion" autocomplete="off"
+                 placeholder="Artista - Tema" maxlength="120"
+                 aria-describedby="err-cancion">
+          <p class="err" id="err-cancion" hidden></p>
+        </div>
+        <button type="submit" class="btn btn--solid" id="playlist-submit">Sugerir</button>
+        <p class="form__status" id="playlist-status" role="status" aria-live="polite"></p>
+      </form>
+    </details>
   </section>
 
   <!-- ============ CONFIRMACIÓN ============ -->

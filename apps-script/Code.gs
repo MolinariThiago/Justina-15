@@ -53,10 +53,6 @@ function appendPlaylist(data) {
   var cancion = (data.cancion || "").toString().trim();
   var fecha = data.fecha ? new Date(data.fecha) : new Date();
   sheet.appendRow([fecha, cancion]);
-
-  // Si Spotify está configurado (ver Spotify.gs / README), suma el tema
-  // a la playlist automáticamente. Si no está configurado, no hace nada.
-  addToSpotifyPlaylist_(cancion);
 }
 
 // Funciones de prueba: ejecutar desde el editor de Apps Script para

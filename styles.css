@@ -339,6 +339,40 @@ img,svg{ max-width:100%; display:block; }
 .form--compact{ max-width:320px; }
 .form--compact .field{ margin-bottom:1rem; }
 
+.btn--spotify{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  color:#1a5c38;
+  border-color:#1a5c38;
+}
+.btn--spotify svg{ color:#1DB954; flex:none; }
+.btn--spotify:hover{ background:#1a5c38; color:var(--cream); }
+.btn--spotify:hover svg{ color:var(--cream); }
+
+/* respaldo plegable para quien no usa Spotify */
+.fallback-toggle{
+  margin:1.8rem auto 0;
+  max-width:320px;
+  text-align:center;
+}
+.fallback-toggle summary{
+  cursor:pointer;
+  font-size:.85rem;
+  color:var(--olive);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  list-style:none;
+  padding:.4rem;
+}
+.fallback-toggle summary::-webkit-details-marker{ display:none; }
+.fallback-toggle[open] summary{ margin-bottom:.6rem; }
+.fallback-toggle__hint{
+  font-size:.9rem;
+  color:var(--ink);
+  margin:0 0 1rem;
+}
+
 .sr-only{
   position:absolute;
   width:1px; height:1px;

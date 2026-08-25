@@ -15,7 +15,11 @@ Página de una sola pantalla (scroll vertical), mobile-first, para que los invit
 
 **Pendiente:** música de fondo (reproductor con play/pause) — agregada al alcance, a la espera de que el usuario indique la canción. Requiere un archivo de audio propio (no funciona embebiendo Spotify/YouTube con controles propios).
 
-**Integración Spotify (implementada, activación pendiente del usuario):** cada canción sugerida en Playlist se agrega sola a una playlist de Spotify, vía `apps-script/Spotify.gs` + librería `OAuth2 for Apps Script`. Requiere setup manual de una sola vez por el usuario (crear app en el dashboard de Spotify, cargar Client ID/Secret y el ID de la playlist como Script Properties, autorizar una vez) — documentado en README.md, "Conectar Spotify (opcional)". El asistente no maneja ni ve esas credenciales; el usuario las carga directamente en Apps Script.
+**Playlist de Spotify — decisión revisada:** se implementó primero la vía API (Apps Script + OAuth2, agregado automático), pero se descartó a pedido del usuario por el costo de setup (crear app en el dashboard de Spotify, credenciales, autorización). Reemplazada por **playlist colaborativa**: botón en la sección Playlist que abre `open.spotify.com/playlist/1NlDhIEXqkhkSVStP8xsGc`, y los invitados agregan sus temas ellos mismos desde Spotify.
+
+Ventaja no obvia además de la simplicidad: eligiendo el tema en Spotify no hay ambigüedad de matching — la búsqueda por texto libre del approach anterior podía agregar la canción equivocada cuando el invitado escribía mal el nombre.
+
+Trade-off: requiere cuenta de Spotify (gratuita alcanza). Mitigado con un `<details>` plegable "No tengo Spotify" que conserva el campo de texto original; esas sugerencias van a la pestaña "Playlist" de la Sheet y se cargan a mano. Depende de que la playlist esté en modo colaborativo — verificación agregada al checklist del README.
 
 ## Datos reales
 
@@ -47,7 +51,7 @@ Sitio estático sin build: `index.html` + `styles.css` + `main.js`. Sin framewor
 2. **Cuenta regresiva** — días/horas/min/seg; al llegar a cero muestra "¡Es hoy!".
 3. **La fiesta** — fecha, hora, dirección, botón "Cómo llegar" (Google Maps con la dirección pre-cargada).
 4. **Instagram** — pedido de etiquetar fotos, link al perfil.
-5. **Playlist** — campo de texto (artista/tema) + botón "Sugerir"; form propio, independiente del de confirmación, mismo backend (Apps Script → pestaña "Playlist" de la Sheet).
+5. **Playlist** — botón "Sumá tu tema" que abre la playlist colaborativa de Spotify; debajo, plegable "No tengo Spotify" con campo de texto de respaldo (Apps Script → pestaña "Playlist" de la Sheet).
 6. **Confirmación** — nombre + botones Sí/No + enviar; pantalla de agradecimiento distinta según la respuesta.
 7. **Footer** — nombre + fecha, cierre visual.
 
