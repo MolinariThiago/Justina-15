@@ -9,9 +9,11 @@ Página de una sola pantalla (scroll vertical), mobile-first, para que los invit
 
 ## Alcance
 
-**Incluye:** portada, cuenta regresiva, datos de la fiesta + link a Google Maps, Instagram, formulario de confirmación (nombre + sí/no), footer.
+**Incluye:** portada, cuenta regresiva, datos de la fiesta + link a Google Maps, Instagram, playlist (sugerencia de canciones), formulario de confirmación (nombre + sí/no), footer.
 
-**Explícitamente fuera:** dress code, música de fondo, playlist, foto de portada, sección de regalo/datos bancarios, fecha límite para confirmar.
+**Explícitamente fuera:** dress code, foto de portada, sección de regalo/datos bancarios, fecha límite para confirmar.
+
+**Pendiente:** música de fondo (reproductor con play/pause) — agregada al alcance, a la espera de que el usuario indique la canción. Requiere un archivo de audio propio (no funciona embebiendo Spotify/YouTube con controles propios).
 
 ## Datos reales
 
@@ -43,8 +45,9 @@ Sitio estático sin build: `index.html` + `styles.css` + `main.js`. Sin framewor
 2. **Cuenta regresiva** — días/horas/min/seg; al llegar a cero muestra "¡Es hoy!".
 3. **La fiesta** — fecha, hora, dirección, botón "Cómo llegar" (Google Maps con la dirección pre-cargada).
 4. **Instagram** — pedido de etiquetar fotos, link al perfil.
-5. **Confirmación** — nombre + botones Sí/No + enviar; pantalla de agradecimiento distinta según la respuesta.
-6. **Footer** — nombre + fecha, cierre visual.
+5. **Playlist** — campo de texto (artista/tema) + botón "Sugerir"; form propio, independiente del de confirmación, mismo backend (Apps Script → pestaña "Playlist" de la Sheet).
+6. **Confirmación** — nombre + botones Sí/No + enviar; pantalla de agradecimiento distinta según la respuesta.
+7. **Footer** — nombre + fecha, cierre visual.
 
 ## Testing / verificación manual
 

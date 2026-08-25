@@ -323,8 +323,28 @@ img,svg{ max-width:100%; display:block; }
   padding-bottom:.15rem;
 }
 
+/* ---------- playlist ---------- */
+.playlist{ background:var(--cream-2); }
+.playlist__text{
+  max-width:320px;
+  margin:0 auto 1.8rem;
+  color:var(--ink);
+}
+.form--compact{ max-width:320px; }
+.form--compact .field{ margin-bottom:1rem; }
+
+.sr-only{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
 /* ---------- rsvp ---------- */
-.rsvp{ background:var(--cream-2); }
+.rsvp{ background:var(--cream); }
 .rsvp__deco{
   position:absolute;
   top:0; left:0;

@@ -72,6 +72,62 @@
     var timer = setInterval(tick, 1000);
   }
 
+  // ---------------- formulario playlist ----------------
+  function initPlaylist() {
+    var form = document.getElementById("playlist-form");
+    var cancion = document.getElementById("cancion");
+    var errCancion = document.getElementById("err-cancion");
+    var submitBtn = document.getElementById("playlist-submit");
+    var status = document.getElementById("playlist-status");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      errCancion.hidden = true;
+      cancion.classList.remove("is-invalid");
+      status.textContent = "";
+
+      var val = cancion.value.trim();
+      if (val.length < 2) {
+        errCancion.textContent = "Escribí un artista o tema.";
+        errCancion.hidden = false;
+        cancion.classList.add("is-invalid");
+        return;
+      }
+
+      var payload = { tipo: "playlist", cancion: val, fecha: new Date().toISOString() };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando…";
+
+      var noScriptConfigured = !SCRIPT_URL || SCRIPT_URL.indexOf("PEGAR_URL") === 0;
+
+      function done(ok) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sugerir";
+        if (ok) {
+          cancion.value = "";
+          status.textContent = "¡Sumada a la lista!";
+        } else {
+          status.textContent = "No se pudo guardar. Escribile a Justina por Instagram con el tema.";
+        }
+      }
+
+      if (noScriptConfigured) {
+        done(false);
+        return;
+      }
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      })
+        .then(function () { done(true); })
+        .catch(function () { done(false); });
+    });
+  }
+
   // ---------------- formulario RSVP ----------------
   function initForm() {
     var form = document.getElementById("rsvp-form");
@@ -222,6 +278,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     initReveal();
     initCountdown();
+    initPlaylist();
     initForm();
   });
 })();

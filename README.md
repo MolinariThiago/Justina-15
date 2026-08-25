@@ -34,7 +34,9 @@ Esto crea la planilla donde vas a ver quién confirmó.
 
 ### Probar que funciona
 
-En el editor de Apps Script, seleccioná la función `testDoPost` en el desplegable de arriba y tocá **Ejecutar** (▶). Volvé a la planilla: debería aparecer una fila con "Prueba Test". Si aparece, anda bien. Borrá esa fila de prueba antes de compartir la página.
+El script crea dos pestañas en la planilla: **RSVP** (confirmaciones) y **Playlist** (canciones sugeridas), cada una la primera vez que reciba un dato de ese tipo.
+
+En el editor de Apps Script, seleccioná `testDoPostRsvp` en el desplegable de arriba y tocá **Ejecutar** (▶). Repetí con `testDoPostPlaylist`. Volvé a la planilla: deberían aparecer las dos pestañas, cada una con una fila de prueba. Si aparecen, anda bien. Borrá esas filas de prueba antes de compartir la página.
 
 ### Conectar la página con el script
 
@@ -82,6 +84,6 @@ Cada vez que cambies algo (texto, fecha, etc.), volvés a correr `npx vercel --p
 | Colores | `styles.css` → variables al principio (`--cream`, `--rose`, `--olive`, `--gold`). |
 | Link de WhatsApp/Instagram de respaldo del form | `main.js` → `WHATSAPP_FALLBACK`. |
 
-## Cómo ver las confirmaciones
+## Cómo ver las confirmaciones y la playlist
 
-Abrí la Google Sheet que creaste en el paso 1. Cada confirmación agrega una fila: fecha y hora, nombre, si asiste o no. Podés ordenar o filtrar como cualquier planilla.
+Abrí la Google Sheet que creaste en el paso 1. Pestaña **RSVP**: fecha, nombre, si asiste o no. Pestaña **Playlist**: fecha y canción sugerida. Podés ordenar o filtrar como cualquier planilla.

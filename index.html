@@ -91,6 +91,26 @@
     </a>
   </section>
 
+  <!-- ============ PLAYLIST ============ -->
+  <section class="section playlist" id="playlist" aria-labelledby="playlist-t">
+    <h2 class="eyebrow reveal" id="playlist-t">Playlist</h2>
+    <p class="playlist__text reveal" data-delay="1">
+      Ayudanos a armar la música de la noche.<br>¿Qué tema no puede faltar?
+    </p>
+
+    <form class="form form--compact reveal" data-delay="2" id="playlist-form" novalidate>
+      <div class="field">
+        <label for="cancion" class="sr-only">Canción</label>
+        <input type="text" id="cancion" name="cancion" autocomplete="off"
+               placeholder="Artista - Tema" maxlength="120"
+               aria-describedby="err-cancion">
+        <p class="err" id="err-cancion" hidden></p>
+      </div>
+      <button type="submit" class="btn btn--solid" id="playlist-submit">Sugerir</button>
+      <p class="form__status" id="playlist-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
   <!-- ============ CONFIRMACIÓN ============ -->
   <section class="section rsvp" id="confirmar" aria-labelledby="rsvp-t">
     <div class="rsvp__deco" aria-hidden="true"></div>
