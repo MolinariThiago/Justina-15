@@ -15,12 +15,14 @@ Página de una sola pantalla (scroll vertical), mobile-first, para que los invit
 
 **Pendiente:** música de fondo (reproductor con play/pause) — agregada al alcance, a la espera de que el usuario indique la canción. Requiere un archivo de audio propio (no funciona embebiendo Spotify/YouTube con controles propios).
 
+**Integración Spotify (implementada, activación pendiente del usuario):** cada canción sugerida en Playlist se agrega sola a una playlist de Spotify, vía `apps-script/Spotify.gs` + librería `OAuth2 for Apps Script`. Requiere setup manual de una sola vez por el usuario (crear app en el dashboard de Spotify, cargar Client ID/Secret y el ID de la playlist como Script Properties, autorizar una vez) — documentado en README.md, "Conectar Spotify (opcional)". El asistente no maneja ni ve esas credenciales; el usuario las carga directamente en Apps Script.
+
 ## Datos reales
 
 | Campo | Valor |
 |---|---|
 | Nombre | Justina Molinari |
-| Fecha/hora | 17 de noviembre de 2026, 00:00 hs (ARG, UTC-3) — **cae martes según el calendario; no confirmado con la familia si el día de semana es correcto** |
+| Fecha/hora | 17 de noviembre de 2026, 21:30 a 03:00 hs (ARG, UTC-3) — **cae martes según el calendario; no confirmado con la familia si el día de semana es correcto** |
 | Lugar | San Lorenzo Este 163, Concordia, Entre Ríos (casa particular) |
 | Instagram | [@justinamolinarii](https://www.instagram.com/justinamolinarii/) |
 

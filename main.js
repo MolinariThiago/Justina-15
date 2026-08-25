@@ -12,8 +12,8 @@
 
   var WHATSAPP_FALLBACK = "https://ig.me/m/justinamolinarii";
 
-  // Fiesta: 17 de noviembre de 2026, 00:00, hora Argentina (UTC-3, sin horario de verano).
-  var PARTY_DATE = new Date("2026-11-17T00:00:00-03:00");
+  // Fiesta: 17 de noviembre de 2026, 21:30, hora Argentina (UTC-3, sin horario de verano).
+  var PARTY_DATE = new Date("2026-11-17T21:30:00-03:00");
 
   var STORAGE_KEY = "quince-justina-rsvp";
 
