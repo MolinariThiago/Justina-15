@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mis 15 · Justina Molinari</title>
-<meta name="description" content="Justina cumple 15. 17 de noviembre, 21:30 hs, San Lorenzo Este 163, Concordia. Confirmá tu asistencia.">
+<meta name="description" content="Justina cumple 15. 17 de noviembre, de 21:30 a 02:30 hs, San Lorenzo Este 163, Concordia. Confirmá tu asistencia.">
 <meta name="theme-color" content="#faf6ee">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mis 15 · Justina Molinari">
-<meta property="og:description" content="17 de noviembre · 21:30 hs · San Lorenzo Este 163, Concordia. Confirmá tu asistencia.">
+<meta property="og:description" content="17 de noviembre · 21:30 a 02:30 hs · San Lorenzo Este 163, Concordia. Confirmá tu asistencia.">
 <meta property="og:image" content="assets/frame.jpg">
 <meta property="og:locale" content="es_AR">
 
@@ -59,11 +59,12 @@
     <div class="date reveal" data-delay="1">
       <p class="date__month">Noviembre</p>
       <div class="date__row">
-        <span class="date__side">21:30</span>
+        <span class="date__side" aria-hidden="true"></span>
         <span class="date__day">17</span>
-        <span class="date__side">2026</span>
+        <span class="date__side" aria-hidden="true"></span>
       </div>
-      <p class="date__range">hasta las 03:00</p>
+      <p class="date__year">2026</p>
+      <p class="date__range">21:30 a 02:30 hs</p>
     </div>
 
     <p class="place reveal" data-delay="2">
@@ -127,6 +128,27 @@
     </details>
   </section>
 
+  <!-- ============ REGALO ============ -->
+  <section class="section gift" id="regalo" aria-labelledby="gift-t">
+    <h2 class="eyebrow reveal" id="gift-t">Tu regalo</h2>
+    <p class="gift__text reveal" data-delay="1">
+      Si querés hacerme un regalo,<br>podés transferirlo a este alias.
+    </p>
+
+    <div class="alias reveal" data-delay="2">
+      <span class="alias__label">Alias</span>
+      <span class="alias__value" id="alias-value">Justinamolinari.mp</span>
+      <button type="button" class="btn btn--copy" id="alias-copy" data-alias="Justinamolinari.mp">
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+          <rect x="9" y="9" width="11" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M15.5 6.5A2.5 2.5 0 0 0 13 4H6.5A2.5 2.5 0 0 0 4 6.5V15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span id="alias-copy-text">Copiar alias</span>
+      </button>
+      <p class="alias__status" id="alias-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
   <!-- ============ CONFIRMACIÓN ============ -->
   <section class="section rsvp" id="confirmar" aria-labelledby="rsvp-t">
     <div class="rsvp__deco" aria-hidden="true"></div>
@@ -157,7 +179,7 @@
 
       <p class="form__fallback" id="fallback" hidden>
         No pudimos guardar tu respuesta.
-        <a href="https://ig.me/m/justinamolinarii" target="_blank" rel="noopener">Escribile a Justina por Instagram</a>
+        <a href="https://www.instagram.com/justinamolinarii/" target="_blank" rel="noopener">Escribile a Justina por Instagram</a>
         y avisale.
       </p>
     </form>
@@ -177,6 +199,27 @@
   </footer>
 
 </div>
+
+<!-- ============ MÚSICA DE FONDO ============ -->
+<button type="button" class="music-btn" id="music-btn"
+        aria-pressed="false" aria-label="Activar la música">
+  <span class="music-btn__ico" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20">
+      <path class="music-btn__horn" d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4z"
+            fill="currentColor" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      <g class="music-btn__waves" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15.3 9.3a3.8 3.8 0 0 1 0 5.4"/>
+        <path d="M17.8 6.8a7.3 7.3 0 0 1 0 10.4"/>
+      </g>
+      <path class="music-btn__cross" d="M15.6 9.6l5 4.8M20.6 9.6l-5 4.8"
+            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="music-btn__txt" id="music-btn-txt">Música</span>
+</button>
+
+<!-- Reproductor de YouTube: invisible, solo se usa el audio. -->
+<div class="yt-host" aria-hidden="true"><div id="yt-player"></div></div>
 
 <script src="main.js"></script>
 </body>

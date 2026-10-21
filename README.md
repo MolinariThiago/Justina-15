@@ -6,14 +6,15 @@ HTML + CSS + JS puro, sin frameworks ni build. Se publica gratis en Vercel.
 ## Estructura del proyecto
 
 ```
-index.html          página completa (portada, cuenta regresiva, fiesta, instagram, playlist, confirmación)
+index.html          página completa (portada, cuenta regresiva, fiesta, instagram, playlist, regalo, confirmación)
 styles.css           estilos
 main.js               cuenta regresiva, animaciones al scrollear, lógica de los formularios
 assets/
   frame.jpg           marco floral (portada)
   side.jpg             floral lateral (decoración de secciones)
 apps-script/
-  Code.gs              guarda confirmaciones y canciones sugeridas en una Google Sheet
+  Code.gs              guarda confirmaciones y canciones sugeridas en una Google Sheet,
+                       y manda un mail de aviso por cada confirmación
 ```
 
 ## 1. Publicar el Apps Script (guarda las confirmaciones)
@@ -110,3 +111,79 @@ Cada vez que cambies algo (texto, fecha, etc.), volvés a correr `npx vercel --p
 ## Cómo ver las confirmaciones y la playlist
 
 Abrí la Google Sheet que creaste en el paso 1. Pestaña **RSVP**: fecha, nombre, si asiste o no. Pestaña **Playlist**: fecha y canción sugerida. Podés ordenar o filtrar como cualquier planilla.
+
+
+## Aviso por mail de cada confirmación
+
+Cada vez que alguien confirma, el Apps Script manda un mail a la dirección que
+está en la constante `AVISO_EMAIL`, arriba de todo en `apps-script/Code.gs`:
+
+```js
+var AVISO_EMAIL = "thiagomolinga@gmail.com";
+```
+
+El mail dice quién confirmó, si viene o no, la fecha y cuánta gente confirmó
+que viene hasta ese momento.
+
+Detalles a tener en cuenta:
+
+- El mail lo manda la **cuenta de Google que publicó el Apps Script**, no la que
+  lo recibe. La primera vez que se implementa, Google pide autorizar el permiso
+  de enviar mails — hay que aceptarlo.
+- Si ya habías implementado el script antes de este cambio, hay que **volver a
+  implementar** (Implementar → Administrar implementaciones → editar → Nueva
+  versión) para que tome el código nuevo y vuelva a pedir el permiso de mail.
+- Cuenta de Gmail común: hasta 100 mails por día. De sobra para unos 15.
+- Si el envío del mail falla, la fila igual queda guardada en la planilla: el
+  error se registra en el log de Apps Script y no corta nada.
+- Para dejar de recibir avisos, poné `var AVISO_EMAIL = "";` y volvé a implementar.
+
+## Alias para transferencias
+
+El alias que aparece en la sección "Tu regalo" está en dos lugares de
+`index.html` y tienen que coincidir:
+
+```html
+<span class="alias__value" id="alias-value">Justinamolinari.mp</span>
+<button ... data-alias="Justinamolinari.mp">
+```
+
+El `data-alias` es el que se copia al portapapeles al tocar el botón.
+
+
+## Música de fondo
+
+La página reproduce un video de YouTube (solo el audio: el reproductor está
+oculto) y muestra un botón de parlante fijo arriba a la derecha para prenderla
+y apagarla. La configuración está arriba de todo en `main.js`:
+
+```js
+var MUSIC_VIDEO_ID = "p4kVWCSzfK4";
+var MUSIC_VOLUME = 30;   // 0 a 100
+```
+
+Para cambiar la canción, reemplazá `MUSIC_VIDEO_ID` por el ID del video nuevo
+— es lo que va después de `v=` en el link de YouTube. En
+`https://www.youtube.com/watch?v=p4kVWCSzfK4&list=...` el ID es `p4kVWCSzfK4`
+(lo que sigue al `&` no importa).
+
+### Sobre el arranque automático
+
+**Ningún navegador deja que una página arranque sonido sola.** Chrome, Safari y
+Firefox lo bloquean hasta que la persona interactúa con la página. Esto no se
+puede evitar desde el código; es una regla del navegador.
+
+La página lo resuelve así:
+
+1. Intenta reproducir apenas carga. En algunos casos el navegador lo permite
+   (por ejemplo si la persona ya visitó la página varias veces).
+2. Si lo bloquea, el botón del parlante late suavemente y la música arranca
+   sola con el primer toque, click, scroll o tecla.
+3. En cualquier momento se puede apagar o prender con el botón. La preferencia
+   queda guardada en el navegador para la próxima visita.
+
+### Si el video no se puede embeber
+
+Algunos videos tienen la reproducción en otros sitios desactivada por el dueño
+del canal. Si pasa eso, el botón del parlante se esconde solo y la página
+funciona normal, sin música. Para probar otro video, cambiá `MUSIC_VIDEO_ID`.

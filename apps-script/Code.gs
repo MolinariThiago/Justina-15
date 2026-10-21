@@ -6,8 +6,13 @@
  *   - "RSVP"     → confirmaciones de asistencia (nombre, asiste)
  *   - "Playlist" → canciones sugeridas
  *
+ * Además, cada confirmación dispara un mail de aviso a AVISO_EMAIL.
+ *
  * Cómo instalarlo: ver README.md, sección "Publicar el Apps Script".
  */
+
+// Dirección que recibe el aviso por cada confirmación.
+var AVISO_EMAIL = "thiagomolinga@gmail.com";
 
 function doPost(e) {
   var data = {};
@@ -46,6 +51,47 @@ function appendRsvp(data) {
   var asiste = data.asiste === "si" ? "Sí" : "No";
   var fecha = data.fecha ? new Date(data.fecha) : new Date();
   sheet.appendRow([fecha, nombre, asiste]);
+  notificarRsvp(nombre, asiste, fecha, sheet);
+}
+
+/**
+ * Manda un mail de aviso por cada confirmación recibida.
+ * Si el envío falla (por ejemplo, cuota diaria agotada) lo registra en el log
+ * pero no corta la ejecución: la fila ya quedó guardada en la planilla.
+ */
+function notificarRsvp(nombre, asiste, fecha, sheet) {
+  if (!AVISO_EMAIL) return;
+
+  var vienen = contarAsistentes(sheet);
+  var asunto = (asiste === "Sí" ? "✅ Confirmó: " : "❌ No viene: ") + nombre + " — 15 de Justina";
+  var cuerpo = [
+    nombre + (asiste === "Sí" ? " confirmó que viene." : " avisó que no puede ir."),
+    "",
+    "Nombre:  " + nombre,
+    "Viene:   " + asiste,
+    "Fecha:   " + Utilities.formatDate(fecha, "America/Argentina/Buenos_Aires", "dd/MM/yyyy HH:mm"),
+    "",
+    "Total que confirmaron que vienen: " + vienen,
+    "",
+    "Planilla completa: " + SpreadsheetApp.getActiveSpreadsheet().getUrl()
+  ].join("\n");
+
+  try {
+    MailApp.sendEmail(AVISO_EMAIL, asunto, cuerpo);
+  } catch (err) {
+    Logger.log("No se pudo enviar el aviso por mail: " + err);
+  }
+}
+
+function contarAsistentes(sheet) {
+  var ultima = sheet.getLastRow();
+  if (ultima < 2) return 0;
+  var valores = sheet.getRange(2, 3, ultima - 1, 1).getValues();
+  var total = 0;
+  for (var i = 0; i < valores.length; i++) {
+    if (valores[i][0] === "Sí") total++;
+  }
+  return total;
 }
 
 function appendPlaylist(data) {
