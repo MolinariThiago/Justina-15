@@ -8,7 +8,7 @@
   // CONFIG — pegá acá la URL del Apps Script una vez publicado.
   // Ver README.md, sección "Publicar el Apps Script".
   // -------------------------------------------------------------
-  var SCRIPT_URL = "PEGAR_URL_DEL_APPS_SCRIPT_ACA";
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPd5ZnhcFVQgIVymXALlHTuWnxh86SKnYaCIf-2ganP2a2rO8sOclWf58iKQGv1mc3Bw/exec";
 
   var IG_FALLBACK = "https://www.instagram.com/justinamolinarii/";
 
